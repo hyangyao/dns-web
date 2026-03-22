@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="IHCCC 公共 DNS 服务主页，域名 dns.ihccc.com，提供加密解析与隐私保护。">
+  <title>dns.ihccc.com | IHCCC 公共 DNS</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg: #0b1224;
+      --panel: #111a33;
+      --panel-strong: #152040;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --primary: #4f46e5;
+      --primary-strong: #4338ca;
+      --accent: #22d3ee;
+      --border: #1f2a4d;
+      --success: #22c55e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Noto Sans SC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(79, 70, 229, 0.12), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.18), transparent 30%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      padding: 56px 24px 32px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.18), rgba(34, 211, 238, 0.12));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .hero h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.6px;
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      color: #cbd5e1;
+      max-width: 820px;
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 600;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s;
+      color: #0b1224;
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+      box-shadow: 0 14px 35px rgba(79, 70, 229, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .value-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .value {
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 15px;
+      color: #e5e7eb;
+      background: var(--panel-strong);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      flex: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .copy {
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 12px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+
+    .copy:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.12); }
+
+    section {
+      padding: 0 24px 28px;
+    }
+
+    .section-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      margin-top: 12px;
+    }
+
+    .section-card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 6px;
+    }
+
+    .step {
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: var(--panel-strong);
+    }
+
+    .step h4 { margin: 0 0 8px; font-size: 15px; }
+    .step ol { margin: 0; padding-left: 18px; color: var(--muted); }
+    .step ol li { margin: 4px 0; }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .badge {
+      background: rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .faq dt {
+      font-weight: 700;
+      margin-top: 10px;
+      color: #e5e7eb;
+    }
+    .faq dd {
+      margin: 4px 0 8px 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 18px 24px 26px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .value-row { flex-direction: column; align-items: stretch; }
+      .copy { width: 100%; justify-content: center; }
+      .cta { flex-direction: column; }
+      .btn, .btn.secondary { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="hero">
+        <span class="hero-tag">IHCCC · 公共递归解析服务</span>
+        <h1>dns.ihccc.com 公共 DNS</h1>
+        <p>为国内外网络环境设计的高速、隐私友好 DNS 解析服务。支持传统 UDP/TCP、加密的 DoT 与 DoH，域名一处接入，后端可按区域智能分流。</p>
+        <div class="cta">
+          <button class="btn copy" data-copy="dns.ihccc.com">复制主域名</button>
+          <a class="btn secondary" href="#setup">查看配置教程</a>
+        </div>
+        <div class="quick-grid">
+          <div class="card">
+            <h3>主接入域名</h3>
+            <div class="value-row">
+              <div class="value">dns.ihccc.com</div>
+              <button class="copy" data-copy="dns.ihccc.com">复制</button>
+            </div>
+            <p style="color: var(--muted); margin: 10px 0 0;">服务上线后，域名将自动解析到当前可用节点，无需手动更新。</p>
+          </div>
+          <div class="card">
+            <h3>DoH（HTTPS）</h3>
+            <div class="value-row">
+              <div class="value">https://dns.ihccc.com/dns-query</div>
+              <button class="copy" data-copy="https://dns.ihccc.com/dns-query">复制</button>
+            </div>
+            <p style="color: var(--muted); margin: 10px 0 0;">适用于 Chrome / Firefox / iOS 及支持 DoH 的客户端。</p>
+          </div>
+          <div class="card">
+            <h3>DoT（TLS 853）</h3>
+            <div class="value-row">
+              <div class="value">dns.ihccc.com : 853</div>
+              <button class="copy" data-copy="dns.ihccc.com:853">复制</button>
+            </div>
+            <p style="color: var(--muted); margin: 10px 0 0;">适用于支持 DNS over TLS 的系统或网关。</p>
+          </div>
+          <div class="card">
+            <h3>备用 IP（示例）</h3>
+            <div class="value-row">
+              <div class="value">IPv4: 203.0.113.53<br>IPv6: 2001:db8::53</div>
+            </div>
+            <p style="color: var(--muted); margin: 10px 0 0;">上线前示例地址，部署时请替换为实际节点或直接使用域名自动解析。</p>
+          </div>
+        </div>
+        <div class="badges">
+          <span class="badge">全局加密优先</span>
+          <span class="badge">无广告注入</span>
+          <span class="badge">支持 IPv4 / IPv6</span>
+          <span class="badge">智能线路切换</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="setup">
+      <div class="section-card">
+        <h2>快速配置</h2>
+        <p style="margin-top: 0; color: var(--muted);">推荐优先使用 <strong>dns.ihccc.com</strong> 域名接入；若需固定 IP，请将示例替换为实际节点。</p>
+        <div class="steps">
+          <div class="step">
+            <h4>Windows 10/11</h4>
+            <ol>
+              <li>设置 → 网络和 Internet → 更改适配器选项。</li>
+              <li>右键当前网络 → 属性 → Internet 协议版本 4/6。</li>
+              <li>选择“使用下面的 DNS 服务器地址”，填入 <code>dns.ihccc.com</code> 或实际 IP。</li>
+            </ol>
+          </div>
+          <div class="step">
+            <h4>macOS</h4>
+            <ol>
+              <li>系统设置 → 网络 → 选中网络 → 详情。</li>
+              <li>DNS → 添加服务器，输入 <code>dns.ihccc.com</code>。</li>
+              <li>如需 DoH，在浏览器或守护进程中设置 DoH 端点。</li>
+            </ol>
+          </div>
+          <div class="step">
+            <h4>iOS / iPadOS</h4>
+            <ol>
+              <li>设置 → Wi‑Fi → 点击当前网络的 “i”。</li>
+              <li>配置 DNS 选择“手动”，删除旧地址后添加 <code>dns.ihccc.com</code>。</li>
+              <li>支持 DoH 的 App（如 AdGuard）可直接填入 HTTPS 端点。</li>
+            </ol>
+          </div>
+          <div class="step">
+            <h4>Android 9+</h4>
+            <ol>
+              <li>系统设置 → 网络和互联网 → 私有 DNS。</li>
+              <li>选择“指定主机名”，输入 <code>dns.ihccc.com</code>（DoT）。</li>
+              <li>保存后全局生效，无需单独填写 IP。</li>
+            </ol>
+          </div>
+          <div class="step">
+            <h4>路由器 / NAS</h4>
+            <ol>
+              <li>在 LAN DHCP 或 WAN DNS 处填写 <code>dns.ihccc.com</code>。</li>
+              <li>若设备支持 DoH/DoT，推荐使用加密端点减轻劫持。</li>
+              <li>确保允许 53 / 853 / 443 出站端口。</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>服务承诺</h2>
+        <ul style="margin: 0 0 10px 18px; color: var(--muted);">
+          <li><strong>隐私优先</strong>：不注入广告或修改解析结果，最小化必要的运行日志。</li>
+          <li><strong>加密可选</strong>：DoH / DoT 端点默认开放，便于规避劫持与探测。</li>
+          <li><strong>高可用</strong>：支持多节点扩展，域名自动指向可用节点，未来可按区域智能分配。</li>
+        </ul>
+        <div class="badges">
+          <span class="badge">HTTP/2 & HTTP/3</span>
+          <span class="badge">EDNS Client Subnet 可选</span>
+          <span class="badge">零劫持</span>
+          <span class="badge">可自托管部署</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-card">
+        <h2>FAQ</h2>
+        <dl class="faq">
+          <dt>需要填 IP 还是直接填域名？</dt>
+          <dd>优先推荐直接使用 <strong>dns.ihccc.com</strong>，后端会根据节点状态自动分配。只有在特定场景（如离线环境）才需要固定 IP。</dd>
+          <dt>DoH 端点与路径可以改吗？</dt>
+          <dd>默认端点为 <code>https://dns.ihccc.com/dns-query</code>。如需自定义路径或多租户，可以在部署时修改并在此页面同步公布。</dd>
+          <dt>如何反馈问题？</dt>
+          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noreferrer">GitHub Issues</a> 反馈，或在部署后留置站点邮箱供联系。</dd>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>IHCCC 公共 DNS · dns.ihccc.com · 构建加密、干净的解析体验。</div>
+  </footer>
+
+  <script>
+    const copies = document.querySelectorAll(".copy");
+    copies.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const text = btn.dataset.copy;
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const original = btn.textContent;
+          btn.textContent = "已复制";
+          btn.style.background = "rgba(34, 197, 94, 0.16)";
+          btn.style.borderColor = "rgba(34, 197, 94, 0.4)";
+          setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = "rgba(255, 255, 255, 0.04)";
+            btn.style.borderColor = "var(--border)";
+          }, 1400);
+        } catch (err) {
+          alert("复制失败，请手动选择文本。");
+          console.error(err);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
