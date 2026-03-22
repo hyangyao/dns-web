@@ -281,7 +281,7 @@
           <div class="card">
             <h3>DoT（TLS 853）</h3>
             <div class="value-row">
-              <div class="value">dns.ihccc.com : 853</div>
+              <div class="value">dns.ihccc.com:853</div>
               <button class="copy" data-copy="dns.ihccc.com:853">复制</button>
             </div>
             <p style="color: var(--muted); margin: 10px 0 0;">适用于支持 DNS over TLS 的系统或网关。</p>
@@ -290,8 +290,10 @@
             <h3>备用 IP（示例）</h3>
             <div class="value-row">
               <div class="value">IPv4: 203.0.113.53<br>IPv6: 2001:db8::53</div>
+              <button class="copy" data-copy="IPv4: 203.0.113.53\nIPv6: 2001:db8::53" title="示例地址，部署后请替换">复制</button>
             </div>
             <p style="color: var(--muted); margin: 10px 0 0;">上线前示例地址，部署时请替换为实际节点或直接使用域名自动解析。</p>
+            <div class="badge" style="margin-top: 10px;">示例占位 · 上线后替换</div>
           </div>
         </div>
         <div class="badges">
@@ -408,7 +410,7 @@
             btn.style.borderColor = "var(--border)";
           }, 1400);
         } catch (err) {
-          alert("复制失败，请手动选择文本。");
+          alert("复制失败：可能需要授予剪贴板权限，或在 HTTPS 环境下重试。已显示文本，可手动选择复制。");
           console.error(err);
         }
       });
