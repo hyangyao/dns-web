@@ -169,6 +169,7 @@
     }
 
     .copy:hover { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.12); }
+    .copy:disabled { opacity: 0.55; cursor: not-allowed; background: rgba(255, 255, 255, 0.03); }
 
     section {
       padding: 0 24px 28px;
@@ -289,11 +290,11 @@
           <div class="card">
             <h3>备用 IP（示例）</h3>
             <div class="value-row">
-              <div class="value">IPv4: 203.0.113.53<br>IPv6: 2001:db8::53</div>
-              <button class="copy" data-copy="IPv4: 203.0.113.53\nIPv6: 2001:db8::53" title="示例地址，部署后请替换">复制</button>
+              <div class="value">示例 IPv4: 203.0.113.53<br>示例 IPv6: 2001:db8::53</div>
+              <button class="copy" disabled title="示例占位，替换为实际节点后再使用">示例不可复制</button>
             </div>
-            <p style="color: var(--muted); margin: 10px 0 0;">上线前示例地址，部署时请替换为实际节点或直接使用域名自动解析。</p>
-            <div class="badge" style="margin-top: 10px;">示例占位 · 上线后替换</div>
+            <p style="color: var(--muted); margin: 10px 0 0;">示例地址不可直接使用，请上线后替换为实际节点或直接使用域名自动解析。</p>
+            <div class="badge" style="margin-top: 10px; border-color: #f87171; color: #fecdd3;">示例占位 · 请勿直接配置</div>
           </div>
         </div>
         <div class="badges">
@@ -410,7 +411,17 @@
             btn.style.borderColor = "var(--border)";
           }, 1400);
         } catch (err) {
-          alert("复制失败：可能需要授予剪贴板权限，或在 HTTPS 环境下重试。已显示文本，可手动选择复制。");
+          const container = btn.closest(".value-row");
+          const valueEl = container ? container.querySelector(".value") : null;
+          if (valueEl) {
+            const range = document.createRange();
+            range.selectNodeContents(valueEl);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            setTimeout(() => sel.removeAllRanges(), 1800);
+          }
+          alert("复制失败：需要剪贴板授权或 HTTPS。已高亮文本，请手动复制。");
           console.error(err);
         }
       });
