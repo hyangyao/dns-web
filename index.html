@@ -291,7 +291,10 @@
             <h3>备用 IP（示例）</h3>
             <!-- 示例地址使用 RFC 保留的文档网段（TEST-NET-3 / 2001:db8::/32），上线后请替换为真实节点 IP。 -->
             <div class="value-row">
-              <div class="value">示例 IPv4: 203.0.113.53<br>示例 IPv6: 2001:db8::53</div>
+              <div class="value">
+                <div>示例 IPv4: 203.0.113.53</div>
+                <div>示例 IPv6: 2001:db8::53</div>
+              </div>
               <button class="copy" disabled title="示例占位，替换为实际节点后再使用">示例不可复制</button>
             </div>
             <p style="color: var(--muted); margin: 10px 0 0;">示例地址不可直接使用，请上线后替换为实际节点或直接使用域名自动解析。</p>
@@ -333,7 +336,7 @@
           <div class="step">
             <h4>iOS / iPadOS</h4>
             <ol>
-              <li>设置 → Wi‑Fi → 点击当前网络的 “i”。</li>
+              <li>设置 → Wi-Fi → 点击当前网络的 “i”。</li>
               <li>配置 DNS 选择“手动”，删除旧地址后添加 <strong>从 dns.ihccc.com 获取的 IP</strong>（此处需 IP）。</li>
               <li>支持 DoH 的 App（如 AdGuard）可直接填入 HTTPS 端点，无需填写 IP。</li>
             </ol>
@@ -412,6 +415,7 @@
             btn.style.borderColor = "var(--border)";
           }, 1400);
         } catch (err) {
+          let highlighted = false;
           const container = btn.closest(".value-row");
           const valueEl = container ? container.querySelector(".value") : null;
           if (valueEl) {
@@ -421,8 +425,11 @@
             sel.removeAllRanges();
             sel.addRange(range);
             setTimeout(() => sel.removeAllRanges(), 1800);
+            highlighted = true;
           }
-          alert("复制失败：需要剪贴板授权或 HTTPS。已高亮文本，请手动复制。");
+          alert(highlighted
+            ? "复制失败：需要剪贴板授权或 HTTPS。已高亮文本，请手动复制。"
+            : "复制失败：需要剪贴板授权或 HTTPS。请手动复制卡片中显示的文本。");
           console.error(err);
         }
       });
