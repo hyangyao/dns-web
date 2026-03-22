@@ -320,7 +320,7 @@
                 <div>示例 IPv4（不会解析）: 203.0.113.53</div>
                 <div>示例 IPv6（不会解析）: 2001:db8::53</div>
               </div>
-              <button class="copy" disabled title="示例占位，替换为实际节点后再使用" aria-label="示例占位，替换为实际节点后再使用">示例不可复制</button>
+              <button class="copy" disabled title="示例占位，替换为实际节点后再使用" aria-label="示例占位按钮已禁用，替换真实节点后再启用复制">示例不可复制</button>
             </div>
             <p style="color: var(--muted); margin: 10px 0 0;">示例地址不可直接使用，请上线后替换为实际节点或直接使用域名自动解析。</p>
             <div class="badge" style="margin-top: 10px; border-color: #f87171; color: #fecdd3;">示例占位 · 请勿直接配置</div>
@@ -413,7 +413,7 @@
           <dt>DoH 端点与路径可以改吗？</dt>
           <dd>默认端点为 <code>https://dns.ihccc.com/dns-query</code>。如需自定义路径或多租户，可以在部署时修改并在此页面同步公布。</dd>
           <dt>如何反馈问题？</dt>
-          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 反馈；正式上线后会在页面底部公布联系邮箱，便于直接邮件沟通。</dd>
+          <dd>欢迎在 <a id="issues-link" href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 反馈；正式上线后会在页面底部公布联系邮箱，便于直接邮件沟通。</dd>
         </dl>
       </div>
     </section>
@@ -426,8 +426,11 @@
   </footer>
 
   <script>
+    const ISSUE_URL = "https://github.com/hyangyao/dns-web/issues";
     const toastEl = document.getElementById("toast");
+    const issuesAnchor = document.getElementById("issues-link");
     let toastTimer;
+    if (issuesAnchor) issuesAnchor.href = ISSUE_URL;
     function showToast(message) {
       if (!toastEl) return;
       toastEl.textContent = message;
@@ -462,7 +465,7 @@
             const sel = window.getSelection();
             sel.removeAllRanges();
             sel.addRange(range);
-            setTimeout(() => sel.removeAllRanges(), 1800);
+            setTimeout(() => sel.removeAllRanges(), 4000);
             highlighted = true;
           }
           showToast(highlighted
