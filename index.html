@@ -289,6 +289,7 @@
           </div>
           <div class="card">
             <h3>备用 IP（示例）</h3>
+            <!-- 示例地址使用 RFC 保留的文档网段（TEST-NET-3 / 2001:db8::/32），上线后请替换为真实节点 IP。 -->
             <div class="value-row">
               <div class="value">示例 IPv4: 203.0.113.53<br>示例 IPv6: 2001:db8::53</div>
               <button class="copy" disabled title="示例占位，替换为实际节点后再使用">示例不可复制</button>
@@ -318,23 +319,23 @@
             <ol>
               <li>设置 → 网络和 Internet → 更改适配器选项。</li>
               <li>右键当前网络 → 属性 → Internet 协议版本 4/6。</li>
-              <li>选择“使用下面的 DNS 服务器地址”，填入 <code>dns.ihccc.com</code> 或实际 IP。</li>
+              <li>选择“使用下面的 DNS 服务器地址”，填入 <strong>由 dns.ihccc.com 解析得到的实际 IP</strong>。若使用 Windows 11 DoH，可在“DNS 设置”中直接填写 HTTPS 端点。</li>
             </ol>
           </div>
           <div class="step">
             <h4>macOS</h4>
             <ol>
               <li>系统设置 → 网络 → 选中网络 → 详情。</li>
-              <li>DNS → 添加服务器，输入 <code>dns.ihccc.com</code>。</li>
-              <li>如需 DoH，在浏览器或守护进程中设置 DoH 端点。</li>
+              <li>DNS → 添加服务器，输入 <strong>解析自 dns.ihccc.com 的 IP</strong>（该字段要求 IP）。</li>
+              <li>如需 DoH，可在浏览器或守护进程中设置 <code>https://dns.ihccc.com/dns-query</code>。</li>
             </ol>
           </div>
           <div class="step">
             <h4>iOS / iPadOS</h4>
             <ol>
               <li>设置 → Wi‑Fi → 点击当前网络的 “i”。</li>
-              <li>配置 DNS 选择“手动”，删除旧地址后添加 <code>dns.ihccc.com</code>。</li>
-              <li>支持 DoH 的 App（如 AdGuard）可直接填入 HTTPS 端点。</li>
+              <li>配置 DNS 选择“手动”，删除旧地址后添加 <strong>从 dns.ihccc.com 获取的 IP</strong>（此处需 IP）。</li>
+              <li>支持 DoH 的 App（如 AdGuard）可直接填入 HTTPS 端点，无需填写 IP。</li>
             </ol>
           </div>
           <div class="step">
@@ -348,7 +349,7 @@
           <div class="step">
             <h4>路由器 / NAS</h4>
             <ol>
-              <li>在 LAN DHCP 或 WAN DNS 处填写 <code>dns.ihccc.com</code>。</li>
+              <li>在 LAN DHCP 或 WAN DNS 处填写 <strong>解析自 dns.ihccc.com 的 IP</strong>；仅当设备支持 DNS 主机名时才可直接填域名。</li>
               <li>若设备支持 DoH/DoT，推荐使用加密端点减轻劫持。</li>
               <li>确保允许 53 / 853 / 443 出站端口。</li>
             </ol>
