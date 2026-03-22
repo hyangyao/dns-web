@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="IHCCC 公共 DNS 服务主页，域名 dns.ihccc.com，提供加密解析与隐私保护。">
   <title>dns.ihccc.com | IHCCC 公共 DNS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;600&display=swap">
   <style>
@@ -412,7 +413,7 @@
           <dt>DoH 端点与路径可以改吗？</dt>
           <dd>默认端点为 <code>https://dns.ihccc.com/dns-query</code>。如需自定义路径或多租户，可以在部署时修改并在此页面同步公布。</dd>
           <dt>如何反馈问题？</dt>
-          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noreferrer">GitHub Issues</a> 反馈；正式上线后会在页面底部公布联系邮箱，便于直接邮件沟通。</dd>
+          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noopener noreferrer">GitHub Issues</a> 反馈；正式上线后会在页面底部公布联系邮箱，便于直接邮件沟通。</dd>
         </dl>
       </div>
     </section>
@@ -467,7 +468,6 @@
           showToast(highlighted
             ? "复制失败：需要剪贴板授权或 HTTPS。已高亮文本，请手动复制。"
             : "复制失败：需要剪贴板授权或 HTTPS。请手动复制卡片中显示的文本。");
-          console.error(err);
         }
       });
     });
