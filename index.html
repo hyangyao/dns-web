@@ -315,9 +315,9 @@
             <!-- 示例地址使用 RFC 保留的文档网段（TEST-NET-3 / 2001:db8::/32），上线后请替换为真实节点 IP。 -->
             <div class="value-row">
               <div class="value">
-                <!-- 以下示例 IP 为文档保留网段，上线请替换为真实可用节点。 -->
-                <div>示例 IPv4: 203.0.113.53</div>
-                <div>示例 IPv6: 2001:db8::53</div>
+                <!-- 以下示例 IP 为文档保留网段（不会路由或解析），上线请替换为真实可用节点。 -->
+                <div>示例 IPv4（不会解析）: 203.0.113.53</div>
+                <div>示例 IPv6（不会解析）: 2001:db8::53</div>
               </div>
               <button class="copy" disabled title="示例占位，替换为实际节点后再使用" aria-label="示例占位，替换为实际节点后再使用">示例不可复制</button>
             </div>
@@ -346,7 +346,8 @@
             <ol>
               <li>设置 → 网络和 Internet → 更改适配器选项。</li>
               <li>右键当前网络 → 属性 → Internet 协议版本 4/6。</li>
-              <li>选择“使用下面的 DNS 服务器地址”，填入 <strong>由 dns.ihccc.com 解析得到的实际 IP</strong>（可在命令行执行 <code>nslookup dns.ihccc.com</code> 获取）。若使用 Windows 11 DoH，可在“DNS 设置”中直接填写 HTTPS 端点。</li>
+              <li>选择“使用下面的 DNS 服务器地址”，填入 <strong>由 dns.ihccc.com 解析得到的实际 IP</strong>（可在命令行执行 <code>nslookup dns.ihccc.com</code> 获取）。</li>
+              <li>可选（Windows 11 DoH）：在“DNS 设置”中选择 DoH 并填写 <code>https://dns.ihccc.com/dns-query</code>。</li>
             </ol>
           </div>
           <div class="step">
@@ -411,7 +412,7 @@
           <dt>DoH 端点与路径可以改吗？</dt>
           <dd>默认端点为 <code>https://dns.ihccc.com/dns-query</code>。如需自定义路径或多租户，可以在部署时修改并在此页面同步公布。</dd>
           <dt>如何反馈问题？</dt>
-          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noreferrer">GitHub Issues</a> 反馈，或在部署后留置站点邮箱供联系。</dd>
+          <dd>欢迎在 <a href="https://github.com/hyangyao/dns-web/issues" target="_blank" rel="noreferrer">GitHub Issues</a> 反馈；正式上线后会在页面底部公布联系邮箱，便于直接邮件沟通。</dd>
         </dl>
       </div>
     </section>
